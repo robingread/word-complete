@@ -51,16 +51,47 @@ $( document ).ready(function() {
 
    function completeCharacters(buffer) {  
       var payload = buffer;
+    //   var words = ["apple", "banana"];
       
-      $.post('/complete', payload, function(data) {
-        // Do something with the returned data
-        console.log(data);
-      }).fail(function(error) {
-        // Handle any errors that occur during the request
-        console.error(error);
+    //   $.post('/complete', payload, function(data) {
+    //     // var response = JSON.parse(data);
+    //     words = data.words;
+    //     // Do something with the returned data
+    //     console.log(data);
+    //   }).fail(function(error) {
+    //     // Handle any errors that occur during the request
+    //     console.error(error);
+    //   });
+
+      return new Promise(function(resolve, reject) {
+        $.post("/complete", payload, function(data) {
+          // This code will be executed when the request succeeds
+          var words = data.words;
+          resolve(words);
+        }).fail(function() {
+          // This code will be executed if the request fails
+          reject(new Error("Failed to fetch words"));
+        });
       });
-      
    }
+
+   function populateList(words) {
+    // Get a reference to the <ul> element
+    var list = document.getElementById('word-list');
+    list.innerHTML = '';
+
+    // var words = ['apple', 'banana', 'cherry', 'date', 'elderberry'];
+
+    // Loop through the array of words
+    for (var i = 0; i < words.length; i++) {
+      // Create a new <li> element for each word
+      var listItem = document.createElement('li');
+      listItem.textContent = words[i];
+
+      // Add the <li> element to the <ul> element
+      list.appendChild(listItem);
+    }
+  }
  
    $( "#clearButton" ).click(function(){
      characterBuffer = "";
@@ -87,6 +118,9 @@ $( document ).ready(function() {
     }
 
     showCharacters(characterBuffer);
-    completeCharacters(characterBuffer);
+    completeCharacters(characterBuffer).then(function(words){
+        console.log(words);
+        populateList(words);
+    });
   });
  });
