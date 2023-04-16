@@ -2,8 +2,13 @@ $( document ).ready(function() {
  
    let characterBuffer = "";
 
-   function showCharacters(buffer="none") {
+   function showCharacters(buffer) {
     var input = document.getElementById("characters")
+    if (buffer.length == 0)
+    {
+        input.value = "Type some chatacters";
+        return;
+    }
     input.value = buffer;
    }
 
@@ -65,4 +70,6 @@ $( document ).ready(function() {
         populateList(words);
     });
   });
+
+  showCharacters("");
  });
