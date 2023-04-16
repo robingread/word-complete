@@ -69,7 +69,7 @@ $( document ).ready(function() {
     else if (e.keyCode == backspaceKey) {
         characterBuffer = characterBuffer.slice(0, -1);
     }
-    else{
+    else if (e.keyCode >= 65 && e.keyCode <= 90) {
         characterBuffer += String.fromCharCode(keynum).toLowerCase();
     }
 
