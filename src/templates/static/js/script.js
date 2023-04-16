@@ -58,7 +58,7 @@ $( document ).ready(function() {
      showCharacters();
    });
 
-   $(document).keypress(function(e) {
+   $(document).keyup(function(e) {
     var keynum = e.keyCode;
     characterBuffer += String.fromCharCode(keynum)
     showCharacters(characterBuffer);
