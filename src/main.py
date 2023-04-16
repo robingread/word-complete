@@ -26,13 +26,12 @@ def get_word_distribution(words: typing.List[str]):
     return nltk.FreqDist(words)
 
 
-def get_proposed_words(characters: str, dictionary: typing.List[str], word_freq: nltk.FreqDist) -> None:
+def get_proposed_words(characters: str, dictionary: typing.List[str], word_freq: nltk.FreqDist) -> typing.List[typing.Tuple[str, float]]:
     print('********************')
     print(f"Chatecters: {characters}")
     words_shortlist = get_word_shortlist(characters=characters, words=dictionary)
     points = [(l, word_freq.freq(l)) for l in words_shortlist]
-    for p in points[0:20]:
-        print(p[0], p[1])
+    return(points[0:20])
 
 
 words = brown.words()

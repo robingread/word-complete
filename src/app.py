@@ -17,11 +17,14 @@ def index():
 @app.route("/complete", methods=['POST'])
 def process_chatacters():
     payload = request.get_data(as_text=True)
-    print(payload)
+    
+    words = [w[0] for w in callback(characters=payload)]
+
     response = {
         'result': 'success',
         'message': 'Task completed',
         'characters': payload,
+        'words': words
     }
-    print(callback(characters=payload))
+
     return jsonify(response)
