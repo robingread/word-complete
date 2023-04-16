@@ -1,7 +1,6 @@
 import os
 from flask import render_template, request, jsonify
 from flask import Flask
-from markupsafe import escape
 
 from main import callback
 
