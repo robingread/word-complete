@@ -54,6 +54,12 @@ $( document ).ready(function() {
     }
 
     showCharacters(characterBuffer);
+    
+    if (characterBuffer.length == 0) {
+        populateList([]);
+        return;
+    }
+
     completeCharacters(characterBuffer).then(function(words){
         console.log(words);
         populateList(words);
