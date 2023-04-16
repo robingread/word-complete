@@ -3,6 +3,8 @@ import nltk
 import time
 import typing
 
+nltk.download('brown')
+
 from nltk.corpus import brown
 
 
@@ -27,8 +29,6 @@ def get_word_distribution(words: typing.List[str]):
 
 
 def get_proposed_words(characters: str, dictionary: typing.List[str], word_freq: nltk.FreqDist) -> typing.List[typing.Tuple[str, float]]:
-    print('********************')
-    print(f"Chatecters: {characters}")
     words_shortlist = get_word_shortlist(characters=characters, words=dictionary)
     points = [(l, word_freq.freq(l)) for l in words_shortlist]
     return(points[0:20])
