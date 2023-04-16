@@ -60,7 +60,19 @@ $( document ).ready(function() {
 
    $(document).keyup(function(e) {
     var keynum = e.keyCode;
-    characterBuffer += String.fromCharCode(keynum)
+    var deleteKey = 46;
+    var backspaceKey = 8;
+
+    if(e.keyCode == deleteKey){
+        characterBuffer = "";
+    }
+    else if (e.keyCode == backspaceKey) {
+        characterBuffer = characterBuffer.slice(0, -1);
+    }
+    else{
+        characterBuffer += String.fromCharCode(keynum).toLowerCase();
+    }
+
     showCharacters(characterBuffer);
   });
  });
