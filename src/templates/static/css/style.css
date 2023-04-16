@@ -7,3 +7,15 @@
 #footer{
     margin-top: 100px;
 }
+
+.word-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+.word-list li {
+    /* display: inline-block; */
+    margin: 0 10px;
+}
