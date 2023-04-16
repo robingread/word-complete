@@ -1,15 +1,30 @@
-{% extends "base.html" %}
-{% block title %}{{title}}{% endblock %}
-{% block head %}
-  {{ super() }}
-{% endblock %}
-{% block content %}
-<div class="row text-center">
-  <h1>Word Guesser</h1>
-  <input type="text" id="characters" disabled="disabled">
-  <button class="btn btn-primary" id="clearButton">Clear</button>
-</div>
-<div class="row text-center">
-  <ul class="word-list" id="word-list"></ul>
-</div>
-{% endblock %}
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="/static/js/script.js"></script>
+    <title>Simple Flask app</title>
+  </head>
+  <body>
+    <div id="content" class="container main-container">
+      <div class="row text-center">
+        <h1>Word Guesser</h1>
+        <input type="text" id="characters" disabled="disabled">
+        <button class="btn btn-primary" id="clearButton">Clear</button>
+      </div>
+      <div class="row text-center">
+        <ul class="word-list" id="word-list"></ul>
+      </div>
+    </div>
+    <div id="footer" class="container text-center">
+      {% block footer %}
+      &copy; Copyright 2023 by Robin Read.
+      {% endblock %}
+    </div>
+    <footer>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </footer>
+  </body>
+</html>
