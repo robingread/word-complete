@@ -41,6 +41,7 @@ $( document ).ready(function() {
    $( "#clearButton" ).click(function(){
      characterBuffer = "";
      showCharacters(characterBuffer);
+     populateList([]);
    });
 
    $(document).keyup(function(e) {
