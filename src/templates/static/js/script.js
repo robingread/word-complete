@@ -6,7 +6,7 @@ $( document ).ready(function() {
     var input = document.getElementById("characters")
     if (buffer.length == 0)
     {
-        input.value = "Type some chatacters";
+        input.value = "Type a word...";
         return;
     }
     input.value = buffer;
