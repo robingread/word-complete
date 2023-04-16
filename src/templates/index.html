@@ -5,19 +5,14 @@
 {% endblock %}
 {% block content %}
 <div class="row text-center">
-  <h1>{{ title}}</h1>
-  <canvas id="inputCanvas" width="200" height="200"></canvas>
-</div>
-<div>
   <h1>Word List</h1>
-  <ul id="word-list"></ul>
+  <ul id="word-list" style="list-style: none;"></ul>
 </div>
-<div>
+<div class="row text-center">
     <input type="text" id="characters" disabled="disabled">
 </div>
 <br/><br/>
 <div class="row text-center">
   <button class="btn btn-primary" id="clearButton">Clear</button>
-  <button class="btn btn-primary" id="sendButton">Send data</button>
 </div>
 {% endblock %}
