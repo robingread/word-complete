@@ -48,6 +48,19 @@ $( document ).ready(function() {
     var input = document.getElementById("characters")
     input.value = buffer;
    }
+
+   function completeCharacters(buffer) {  
+      var payload = buffer;
+      
+      $.post('/complete', payload, function(data) {
+        // Do something with the returned data
+        console.log(data);
+      }).fail(function(error) {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
+      
+   }
  
    $( "#clearButton" ).click(function(){
      characterBuffer = "";
@@ -74,5 +87,6 @@ $( document ).ready(function() {
     }
 
     showCharacters(characterBuffer);
+    completeCharacters(characterBuffer);
   });
  });

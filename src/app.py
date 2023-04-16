@@ -1,8 +1,9 @@
 import os
-from flask import render_template
+from flask import render_template, request, jsonify
 from flask import Flask
 from markupsafe import escape
 
+from main import callback
 
 app = Flask(__name__)
 app.debug = True
@@ -13,6 +14,14 @@ def index():
     title = 'Create the input'
     return render_template('index.html', title=title)
 
-@app.route("/<characters>")
-def process_chatacters(characters):
-    return f"<p>Hello, world! You entered: {escape(characters)}</p>"
+@app.route("/complete", methods=['POST'])
+def process_chatacters():
+    payload = request.get_data(as_text=True)
+    print(payload)
+    response = {
+        'result': 'success',
+        'message': 'Task completed',
+        'characters': payload,
+    }
+    print(callback(characters=payload))
+    return jsonify(response)

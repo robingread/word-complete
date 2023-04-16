@@ -40,7 +40,7 @@ word_freq = get_word_distribution(words)
 dictionary = list(word_freq.keys())
 
 callback = functools.partial(get_proposed_words, dictionary=dictionary, word_freq=word_freq)
-listener = KeyboardListener(callback=callback)
+# listener = KeyboardListener(callback=callback)
 
-while True:
-    time.sleep(0.01)
+# while True:
+#     time.sleep(0.01)
