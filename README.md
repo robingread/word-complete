@@ -2,7 +2,9 @@
 
 ## Development
 
-To setup the virtualenv and install the dependencies, run:
+Initial development is best done locally using a `virtualenv`, and once results are satisfactory, you can also try using `docker` for testing before deployment.
+
+To setup the `virtualenv` and install the dependencies, run:
 
 ```bash
 source venv/bin/activate
@@ -16,18 +18,32 @@ cd src
 flask --app app run
 ```
 
-## Deployment
+### Using Docker Container
 
-This app can be deployed as a Docker container. To build the container, run:
+To build a `docker` image for testing purposes (pre-deployment), run:
 
 ```bash
-docker build -t my-flask-app .
+./scripts/build-dev.sh
 ```
 
-Run using:
+To run the container, run:
 
 ```bash
-docker run -p 5000:5000 my-flask-app
+docker -p 5000:5000 robingread/word-complete:dev
+```
+
+You can then try the program via web browser at [http://localhost:5000](http://localhost:5000). Alternativly you can also load the webpage by running:
+
+```bash
+xdg-open http://localhost:5000
+```
+
+## Deployment to Dockerhub
+
+To build a multi-arch `docker` image (AMD64 & ARMv7/64) and push it to [Dockerhub](https://hub.docker.com/r/robingread/word-complete), run:
+
+```bash
+./scripts/build-deploy.sh
 ```
 
 # Useful links:
