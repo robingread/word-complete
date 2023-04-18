@@ -1,6 +1,9 @@
 # Base image
 FROM python:3.9-slim-buster
 
+# install gcc and other necessary packages
+RUN apt-get update && apt-get install -y gcc
+
 # Set the working directory
 WORKDIR /app
 
