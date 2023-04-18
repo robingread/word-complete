@@ -1,0 +1,7 @@
+# Ignore everything except the top-level requirements.txt and src directory
+*
+!requirements.txt
+!src/
+
+# Exclude any .pyc files within the src directory
+src/**/*.pyc
