@@ -4,7 +4,9 @@ set -eu
 
 BUILDER_NAME=multi-stach
 IMG=robingread/word-complete
-TAG=latest
+TAG=${1:-latest} 
+
+echo "Deploying docker image with tag:" ${IMG}:${TAG}
 
 export DOCKER_CLI_EXPERIMENTAL=enabled
 
