@@ -1,4 +1,4 @@
-# word_compelete
+# word-compelete
 
 ## Development
 
@@ -46,9 +46,35 @@ To build a multi-arch `docker` image (AMD64 & ARMv7/64) and push it to [Dockerhu
 ./scripts/build-deploy.sh
 ```
 
+## Setting up on a Raspberry Pi
+
+The intended target deployment for this remains a [Raspberry Pi](https://www.raspberrypi.org/) and this section outlines how to setup a Raspberry Pi so that the `docker` container is started at boot and the web-brower is opened in full-screen mode.
+
+Create a `startup.sh` in the home directory and add the following: 
+
+```bash
+#!/bin/sh
+docker run --rm --name word-complete -d -p 5000:5000 robingread/word-complete
+sleep 45
+DISPLAY=:0 /usr/bin/chromium-browser --kiosk http://localhost:5000 &
+```
+
+Now make the script executable:
+
+```bash
+chmod +x $HOME/startup.sh
+```
+
+Now add the following to `crontab` (`sudo crontab -e`):
+
+```bash
+@reboot /home/pi/startup.sh &
+```
+
 # Useful links:
 
 These are links that were very helpful in making this project:
 
 - https://www.jitsejan.com/python-and-javascript-in-flask
 - https://openai.com/blog/chatgpt
+- https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/
