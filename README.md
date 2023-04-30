@@ -54,9 +54,17 @@ Create a `startup.sh` in the home directory and add the following:
 
 ```bash
 #!/bin/sh
+
+ZOOM_SCALE_FACTOR=1.0
+
 docker run --rm --name word-complete -d -p 5000:5000 robingread/word-complete
+
 sleep 45
-DISPLAY=:0 /usr/bin/chromium-browser --kiosk http://localhost:5000 &
+
+DISPLAY=:0 /usr/bin/chromium-browser \
+    --kiosk \
+    --force-device-scale-factor=$ZOOM_SCALE_FACTOR \
+    http://localhost:5000 &
 ```
 
 Now make the script executable:
