@@ -53,18 +53,36 @@ The intended target deployment for this remains a [Raspberry Pi](https://www.ras
 Create a `startup.sh` in the home directory and add the following: 
 
 ```bash
-#!/bin/sh
+#!/bin/bash
 
-ZOOM_SCALE_FACTOR=1.0
+set -eu
 
-docker run --rm --name word-complete -d -p 5000:5000 robingread/word-complete
+MAX_WORD_GUESSES=20
+ZOOM_SCALE_FACTOR=1.5
+LOG_OUTPUT=/home/pi/output.log
+
+touch $LOG_OUTPUT || true
+
+exec &> >(tee -a $LOG_OUTPUT)
+
+echo "Starting docker container"
+
+docker run \
+    --rm --name word-complete \
+    -d -p 5000:5000 \
+    robingread/word-complete
+
+echo "Docker container running"
 
 sleep 45
 
-DISPLAY=:0 /usr/bin/chromium-browser \
+echo "Starting Chromium"
+
+DISPLAY=:0 chromium-browser \
+    --new-window \
     --kiosk \
-    --force-device-scale-factor=$ZOOM_SCALE_FACTOR \
-    http://localhost:5000 &
+    --force-device-scale-factor=${ZOOM_SCALE_FACTOR} \
+    http://localhost:5000
 ```
 
 Now make the script executable:
@@ -73,10 +91,10 @@ Now make the script executable:
 chmod +x $HOME/startup.sh
 ```
 
-Now add the following to `crontab` (`sudo crontab -e`):
+Now add the following to `/etc/xdg/lxsession/LXDE-pi/autostart`:
 
 ```bash
-@reboot /home/pi/startup.sh &
+bash /home/pi/startup.sh
 ```
 
 # Useful links:
