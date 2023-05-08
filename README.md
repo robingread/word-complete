@@ -45,8 +45,10 @@ xdg-open http://localhost:5000
 To build a multi-arch `docker` image (AMD64 & ARMv7/64) and push it to [Dockerhub](https://hub.docker.com/r/robingread/word-complete), run:
 
 ```bash
-./scripts/build-deploy.sh
+./scripts/build-deploy.sh VERSION
 ```
+
+The value for `VERSION` is what the image will be tagged as.
 
 ## Setting up on a Raspberry Pi
 
