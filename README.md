@@ -29,8 +29,10 @@ To build a `docker` image for testing purposes (pre-deployment), run:
 To run the container, run:
 
 ```bash
-docker run -p 5000:5000 robingread/word-complete:dev
+docker run -p 5000:5000 -e MAX_WORDS=15 robingread/word-complete:dev
 ```
+
+The `-e MAX_WORDS` variable is *optional* and is used to set the maximum number of words to be returned in any single search/guess/completion.
 
 You can then try the program via web browser at [http://localhost:5000](http://localhost:5000). Alternativly you can also load the webpage by running:
 
