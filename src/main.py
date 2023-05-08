@@ -31,10 +31,10 @@ def get_word_distribution(words: typing.List[str]):
     return nltk.FreqDist(words)
 
 
-def get_proposed_words(characters: str, dictionary: typing.List[str], word_freq: nltk.FreqDist) -> typing.List[typing.Tuple[str, float]]:
+def get_proposed_words(characters: str, dictionary: typing.List[str], word_freq: nltk.FreqDist, max_words: int) -> typing.List[typing.Tuple[str, float]]:
     words_shortlist = get_word_shortlist(characters=characters, words=dictionary)
     points = [(l, word_freq.freq(l)) for l in words_shortlist]
-    return(points[0:20])
+    return(points[0:max_words])
 
 
 words = brown.words()
