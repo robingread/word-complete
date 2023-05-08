@@ -1,6 +1,7 @@
 import functools
 import log
 import nltk
+import os
 import time
 import typing
 
@@ -40,6 +41,8 @@ def get_proposed_words(characters: str, dictionary: typing.List[str], word_freq:
 words = brown.words()
 word_freq = get_word_distribution(words)
 dictionary = list(word_freq.keys())
+max_words = int(os.environ.get("MAX_WORDS", default=20))
+LOGGER.info(f"Max Words: {max_words}")
 
-callback = functools.partial(get_proposed_words, dictionary=dictionary, word_freq=word_freq)
+callback = functools.partial(get_proposed_words, dictionary=dictionary, word_freq=word_freq, max_words=max_words)
 
