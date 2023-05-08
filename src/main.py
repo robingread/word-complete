@@ -1,4 +1,5 @@
 import functools
+import log
 import nltk
 import time
 import typing
@@ -8,13 +9,15 @@ nltk.download('brown')
 from nltk.corpus import brown
 
 
+LOGGER = log.get_logger()
+
 
 def timer(func):
     def wrapper(*args, **kwargs):
         tic = time.perf_counter()
         ret = func(*args, **kwargs)
         toc = time.perf_counter()
-        print(f"Function: {func}, time: {toc - tic:0.04f} seconds")
+        LOGGER.info(f"Function: {func}, time: {toc - tic:0.04f} seconds")
         return ret
     return wrapper
 
