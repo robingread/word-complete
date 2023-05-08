@@ -14,7 +14,7 @@ def index():
     return render_template('index.html', title=title)
 
 @app.route("/complete", methods=['POST'])
-def process_chatacters():
+def process_characters():
     payload = request.get_data(as_text=True)
     
     words = [w[0] for w in callback(characters=payload)]
