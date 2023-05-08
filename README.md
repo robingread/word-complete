@@ -29,7 +29,7 @@ To build a `docker` image for testing purposes (pre-deployment), run:
 To run the container, run:
 
 ```bash
-docker -p 5000:5000 robingread/word-complete:dev
+docker run -p 5000:5000 robingread/word-complete:dev
 ```
 
 You can then try the program via web browser at [http://localhost:5000](http://localhost:5000). Alternativly you can also load the webpage by running:
