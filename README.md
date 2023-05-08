@@ -72,6 +72,7 @@ echo "Starting docker container"
 docker run \
     --rm --name word-complete \
     -d -p 5000:5000 \
+    -e MAX_WORDS=$MAX_WORD_GUESSES \
     robingread/word-complete
 
 echo "Docker container running"
